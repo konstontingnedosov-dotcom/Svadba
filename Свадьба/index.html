@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Свадебное приглашение</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <section class="timer-section fade-in">
+    <h2 class="subtitle">До нашего волшебного дня осталось</h2>
+    <div id="timer" class="timer">00 : 00 : 00 : 00</div>
+    <div class="timer-labels">Дней&nbsp;&nbsp;Часов&nbsp;&nbsp;Минут&nbsp;&nbsp;Секунд</div>
+  </section>
+
+  <section class="invite-text fade-in">
+    <h1>Дорогие друзья и близкие!</h1>
+    <p>С огромной радостью приглашаем вас разделить с нами<br>
+    особенный и долгожданный день — день нашей свадьбы.</p>
+
+    <p class="date-line">
+        03.11.2025  —  день</p>
+<p class="date-line"> который мы не забудем никогда.
+    </p>
+  </section>
+
+  <div class="lace-separator"></div>
+
+  <section class="event-text fade-in">
+    <p>В этот прекрасный день мы произнесём клятвы любви и верности,<br>
+    а после приглашаем вас отпраздновать это событие<br>
+    в ресторане <strong>«Ала-Арча»</strong>.</p>
+
+    <p class="place">Место проведения:<br>
+      Аламудунский район, село Кашка-Суу,<br>
+      Альплагерь «Ала-Арча», 2Б,<br>
+      Чуйская область, Кыргызстан.
+    </p>
+
+    <div class="photo-gallery">
+      <img src="images/rest2.jpg" alt="Ресторан 1">
+      <img src="images/rest1.jpg" alt="Ресторан 2">
+      <img src="images/rest3.jpg" alt="Ресторан 3">
+    </div>
+  </section>
+
+  <div class="lace-separator"></div>
+
+  <section class="dresscode fade-in">
+    <p>Мы очень старались сделать праздник красивым<br>
+    и будем рады, если вы в своих нарядах отразите<br>
+    те же чувства и эмоции, что и мы.</p>
+
+    <img src="images/style.jpg" alt="Идеи нарядов" class="dress-img">
+  </section>
+
+  <div class="lace-separator"></div>
+
+  <section class="form-section fade-in">
+    <h2>Подтвердите своё присутствие</h2>
+    <form id="rsvp-form">
+      <label>Имя и фамилия:</label>
+      <input type="text" name="guest" placeholder="Введите имя и фамилию" required>
+
+      <label>Будете ли вы с нами в этот день?</label>
+      <div class="options">
+        <label><input type="radio" name="attend" value="yes"> Да, конечно приду!</label>
+        <label><input type="radio" name="attend" value="partner"> Приду со своим партнёром</label>
+        <label><input type="radio" name="attend" value="no"> Нет, я не смогу</label>
+      </div>
+
+      <button type="submit" class="submit-btn">Подтвердить</button>
+    </form>
+
+    <div id="animation" class="hidden">
+      <div class="petals"></div>
+      <div class="hearts"></div>
+      <h2 id="final-message"></h2>
+    </div>
+
+    <p id="response" class="hidden">Ответ отправлен 💌</p>
+  </section>
+
+  <script>
+    const weddingDate = new Date("November 3, 2025 16:00:00").getTime();
+    const timerEl = document.getElementById("timer");
+    const interval = setInterval(() => {
+      const now = new Date().getTime();
+      const diff = weddingDate - now;
+      if (diff <= 0) {
+        timerEl.textContent = "Сегодня тот самый день 💍";
+        clearInterval(interval);
+        return;
+      }
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+      timerEl.textContent = 
+        `${days.toString().padStart(2,'0')} : ${hours.toString().padStart(2,'0')} : ${minutes.toString().padStart(2,'0')} : ${seconds.toString().padStart(2,'0')}`;
+    }, 1000);
+
+    const form = document.getElementById("rsvp-form");
+    const anim = document.getElementById("animation");
+    const msg = document.getElementById("final-message");
+    const response = document.getElementById("response");
+
+    form.addEventListener("submit", e => {
+      e.preventDefault();
+      anim.classList.remove("hidden");
+      anim.classList.add("active");
+      msg.textContent = (form.attend.value === "no")
+        ? "Очень жаль, но мы всегда будем рады вашему присутствию 💛"
+        : "Мы будем ждать вас 💛";
+
+      // создаём лепестки и сердечки
+      for (let i = 0; i < 40; i++) {
+        const petal = document.createElement('div');
+        petal.className = 'petal';
+        petal.style.left = `${Math.random() * 100}%`;
+        petal.style.animationDelay = `${Math.random() * 5}s`;
+        anim.appendChild(petal);
+      }
+      for (let i = 0; i < 20; i++) {
+        const heart = document.createElement('div');
+        heart.className = 'heart';
+        heart.style.left = `${Math.random() * 100}%`;
+        heart.style.animationDelay = `${Math.random() * 5}s`;
+        anim.appendChild(heart);
+      }
+
+      setTimeout(() => {
+        anim.classList.add("hidden");
+        response.classList.remove("hidden");
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }, 8000);
+    });
+  </script>
+</body>
+</html>
