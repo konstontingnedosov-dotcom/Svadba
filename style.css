@@ -1,11 +1,11 @@
 body {
   margin: 0;
   padding: 0;
-  background-color: #d8c1ab;
+  background: linear-gradient(180deg, #d8d8d8 0%, #cfcfcf 100%); /* мягкий серый как на фото */
   font-family: "Great Vibes", cursive;
-  color: #5a3e2b;
-  text-align: center;
+  color: #2d1e10;
   overflow-x: hidden;
+  text-align: center;
 }
 
 h1, h2, p {
@@ -138,12 +138,4 @@ input[type="text"] {
     transform: translateY(0);
   }
 }
-body {
-  margin: 0;
-  padding: 0;
-  background: linear-gradient(180deg, #d8d8d8 0%, #cfcfcf 100%); /* мягкий серый как на фото */
-  font-family: "Great Vibes", cursive;
-  color: #2d1e10;
-  overflow-x: hidden;
-  text-align: center;
-}
+
