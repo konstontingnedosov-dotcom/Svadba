@@ -190,27 +190,32 @@
   <source src="music.mp3" type="audio/mpeg">
 </audio>
 
-<!-- 🎵 Кнопка включения музыки -->
-<div id="musicPrompt" 
-     style="position:fixed;inset:0;background:rgba(0,0,0,0.6);
-     color:white;display:flex;align-items:center;justify-content:center;
-     font-size:22px;font-family:'Playfair Display',serif;
-     z-index:2000;transition:opacity 1s ease;">
-  🔊 Нажмите, чтобы включить музыку
-</div>
-
 <script>
-  const prompt = document.getElementById('musicPrompt');
-  const music = document.getElementById('music'); // твой тег <audio id="music">
+  const music = document.getElementById('music');
+  const soundBtn = document.getElementById('toggleSound');
+  let isPlaying = false;
 
-  document.addEventListener('click', () => {
-    if (music) {
-      music.volume = 0.5;
+  soundBtn.addEventListener('click', () => {
+    if (!music) return;
+
+    if (!isPlaying) {
+      // ▶️ Запуск музыки (тот самый рабочий способ)
+      music.volume = 0.6;
       music.play().catch(err => console.warn('Музыка не запущена:', err));
+      soundBtn.textContent = 'Звук 🔊';
+      soundBtn.style.background = '#ffb6c1';
+      soundBtn.style.color = '#fff';
+      isPlaying = true;
+    } else {
+      // ⏹️ Остановка
+      music.pause();
+      music.currentTime = 0; // перематываем в начало
+      soundBtn.textContent = 'Звук 🔇';
+      soundBtn.style.background = '#f3f3f3';
+      soundBtn.style.color = '#333';
+      isPlaying = false;
     }
-    prompt.style.opacity = '0';
-    setTimeout(() => prompt.remove(), 1000);
-  }, { once: true });
+  });
 </script>
 
 
