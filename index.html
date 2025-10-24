@@ -397,6 +397,37 @@
       }
     }
   </style>
+<!-- ✨ Эффект плавного появления/исчезновения при прокрутке -->
+<style>
+  .fade-section {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 1.2s ease, transform 1.2s ease;
+  }
+  .fade-section.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+
+<script>
+  // Добавляем класс fade-section ко всем основным блокам
+  document.querySelectorAll('section, .hero, .photo-grid img').forEach(el => {
+    el.classList.add('fade-section');
+  });
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      } else {
+        entry.target.classList.remove('visible');
+      }
+    });
+  }, { threshold: 0.2 });
+
+  document.querySelectorAll('.fade-section').forEach(el => observer.observe(el));
+</script>
 
 </body>
 </html>
