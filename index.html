@@ -100,49 +100,37 @@ body{
   white-space:pre-line; /* перенос строки без <br> */
   animation:burnIn 2.4s ease-out forwards .4s;
 }
-.photo-holder .title{
-  position:absolute;
-  left:50%;
-  bottom:20px;
-  transform:translateX(-50%);
-  font-family:'Great Vibes',cursive;
-  font-size:46px;
-  color:var(--gold);
+/* ==== Текст на фото (тёмно-золотой, внизу) ==== */
+.photo-holder .title {
+  position: absolute;
+  bottom: 20px; /* текст внизу */
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'Great Vibes', cursive;
+  font-size: clamp(32px, 6vw, 41px); /* авторазмер: на телефонах чуть меньше */
+  font-weight: 550;
+  color: #a47c1f; /* тёмное золото */
+  text-align: center;
+  line-height: 1.3em;
+  white-space: pre-line;
+  opacity: 0;
+  animation: fadeInTitle 2s ease-out forwards;
   text-shadow:
-    0 0 10px rgba(212,175,55,0.7),
-    0 0 20px rgba(212,175,55,0.5),
-    0 0 40px rgba(212,175,55,0.3);
-  padding:0;
-  border-radius:0;
-  opacity:0;
-  text-align:center;
-  line-height:1.3em;
-  white-space:pre-line; /* перенос строки без <br> */
-  animation:burnIn 2.4s ease-out forwards .4s;
+    0 0 4px rgba(0,0,0,0.4),
+    0 0 10px rgba(0,0,0,0.2); /* лёгкий контраст для читаемости */
 }
 
-@keyframes burnIn {
+/* 🔥 Эффект плавного проявления текста */
+@keyframes fadeInTitle {
   0% {
-    opacity:0;
-    filter:blur(6px) brightness(2);
-    text-shadow:
-      0 0 30px rgba(255,255,200,0.9),
-      0 0 60px rgba(255,255,150,0.6),
-      0 0 100px rgba(255,255,100,0.4);
-  }
-  50% {
-    opacity:1;
-    filter:blur(2px) brightness(1.6);
+    opacity: 0;
+    transform: translateX(-50%) translateY(20px); /* чуть ниже при старте */
   }
   100% {
-    opacity:1;
-    filter:blur(0) brightness(1);
-    text-shadow:
-      0 0 10px rgba(212,175,55,0.8),
-      0 0 20px rgba(212,175,55,0.6);
+    opacity: 1;
+    transform: translateX(-50%) translateY(0); /* финальное положение */
   }
 }
-
 /* ==== Правый текст с эффектом набора ==== */
 .hero-right{
   border:1px solid var(--gold);
@@ -287,7 +275,7 @@ h3{font-family:'Playfair Display',serif;margin-bottom:15px;color:var(--gold)}
 
   <section class="hero">
     <div class="photo-holder">
-      <div class="title">Приглашаем на нашу<br>  свадьбу</div>
+      <div class="title">Приглашаем на<br>нашу свадьбу</div>
     </div>
     <div class="hero-right">
       <div class="typewriter" id="typewriter"></div>
