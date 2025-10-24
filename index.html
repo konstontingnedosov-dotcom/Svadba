@@ -293,17 +293,18 @@
 
 
       
-    <div id="musicPrompt" 
+  <!-- 🎵 Кнопка включения музыки -->
+<div id="musicPrompt" 
      style="position:fixed;inset:0;background:rgba(0,0,0,0.6);
      color:white;display:flex;align-items:center;justify-content:center;
      font-size:22px;font-family:'Playfair Display',serif;
      z-index:2000;transition:opacity 1s ease;">
   🔊 Нажмите, чтобы включить музыку
-    </div>
+</div>
 
- <script>
+<script>
   const prompt = document.getElementById('musicPrompt');
-  const music = document.getElementById('music'); // твой тег <audio id="music">
+  const music = document.getElementById('bgAudio'); // исправлено id
 
   document.addEventListener('click', () => {
     if (music) {
@@ -312,8 +313,8 @@
     }
     prompt.style.opacity = '0';
     setTimeout(() => prompt.remove(), 1000);
-    }, { once: true });
-  </script>
+  }, { once: true });
+</script>
 
 
 
