@@ -227,14 +227,13 @@
 
    
 <!-- Секция с фотографиями -->
-<section id="images">
-        <div class="section-card">
-          <h3 style="font-family:'Playfair Display',serif">Галерея</h3>
-
-        <img src="foto-1.jpg" alt="Фото 1">
-        <img src="foto-2.jpg" alt="Фото 2">
-        <img src="foto-3.jpg" alt="Фото 3">
-        <img src="foto-4.jpg" alt="Фото 4">
+<section class="gallery">
+    <h2>Наши фото</h2>
+    <div class="photo-grid">
+        <img src="images/foto-1.jpg" alt="Фото 1">
+        <img src="images/foto-2.jpg" alt="Фото 2">
+        <img src="images/foto-3.jpg" alt="Фото 3">
+        <img src="images/foto-4.jpg" alt="Фото 4">
     </div>
 </section>
 
@@ -265,8 +264,8 @@
 
 .photo-grid img {
     width: 100%;
-    width: 270px;
-    height: 406px;
+    max-width: 400px;
+    height: 600px;
     object-fit: cover;
     border-radius: 20px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.15);
@@ -279,16 +278,18 @@
 }
 
 /* Адаптив под телефон */
-@media (max-width: 270px) {
+@media (max-width: 768px) {
     .photo-grid {
         grid-template-columns: 1fr;
     }
     .photo-grid img {
-        max-width: 100%;
+        max-width: 90%;
         height: auto;
     }
 }
 </style>
+
+
 
 
       <!-- RSVP -->
