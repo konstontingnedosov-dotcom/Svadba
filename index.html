@@ -135,30 +135,62 @@ h3{font-family:'Playfair Display',serif;margin-bottom:15px;color:var(--gold)}
 .gallery.visible .photo-grid{opacity:1;transform:scale(1);}
 .photo-grid img{width:100%;border-radius:12px;box-shadow:0 0 20px rgba(212,175,55,.3);}
 
-/* ==== RSVP ==== */
-form.rsvp{display:flex;flex-direction:column;gap:10px;}
-input,textarea,select{
-  padding:10px;border-radius:8px;
-  border:1px solid var(--gold);
-  background:var(--darkgray);
-  color:var(--gold);
-}
-button{
-  padding:12px;border-radius:8px;
-  border:1px solid var(--gold);
-  background:var(--darkgray);
-  color:var(--gold);
-  font-weight:bold;
-  cursor:pointer;
-  transition:.3s;
-}
-button:hover{background:var(--gold);color:#000;}
-.thanks-msg{
-  text-align:center;
-  font-size:18px;
-  margin-top:15px;
-  display:none;
-}
+/* Форма RSVP */
+    form.rsvp {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    input, textarea, select {
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid var(--gold);
+      background: black;
+      color: var(--gold);
+      font-size: 14px;
+    }
+
+    button[type=submit] {
+      padding: 12px;
+      border-radius: 8px;
+      background: black;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      cursor: pointer;
+      font-weight: bold;
+      transition: 0.2s;
+    }
+
+    button[type=submit]:hover {
+      background: var(--gold);
+      color: black;
+    }
+
+    /* Popup */
+    .thanks-popup {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: 0.3s;
+    }
+
+    .thanks-popup.show {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .thanks-box {
+      padding: 30px;
+      text-align: center;
+      color: var(--gold);
+    }
+
 
 /* ==== Сердечки ==== */
 .heart{
@@ -241,26 +273,32 @@ button:hover{background:var(--gold);color:#000;}
     </div>
   </section>
 
-  <section id="rsvp">
-    <h3>Подтверждение участия</h3>
-    <form class="rsvp" id="rsvpForm">
-      <input type="text" name="name" placeholder="Ваше имя" required>
-      <input type="tel" name="phone" placeholder="Телефон" required>
-      <select name="coming" required>
-        <option value="">Придёте ли вы?</option>
-        <option value="yes">Да, я буду</option>
-        <option value="no">К сожалению, нет</option>
-      </select>
-      <textarea name="note" rows="3" placeholder="Сообщение"></textarea>
-      <button type="submit">Отправить</button>
-    </form>
-    <div class="thanks-msg" id="thanksMsg">Спасибо! Ваш ответ получен 💌</div>
-  </section>
-</div>
+  section id="rsvp">
+      <h3>Подтверждение участия</h3>
+      <form class="rsvp" id="rsvpForm">
+        <input type="text" name="name" placeholder="Ваше имя" required>
+        <input type="tel" name="phone" placeholder="Телефон" required>
+        <select name="coming" required>
+          <option value="">Придёте ли вы?</option>
+          <option value="yes">Да, я буду</option>
+          <option value="no">К сожалению, нет</option>
+        </select>
+        <textarea name="note" rows="3" placeholder="Сообщение"></textarea>
+        <button type="submit">Отправить</button>
+      </form>
+    </section>
+
+    <div class="thanks-popup" id="thanksPopup">
+      <div class="thanks-box">
+        <h2>Спасибо!</h2>
+        <p>Ваш ответ получен 💌</p>
+      </div>
+    </div>
+  </div>
 
 <audio id="bgAudio" preload="auto" loop>
-  <source src="musik/music.mp3" type="audio/mpeg">
-</audio>
+    <source src="musik/music.mp3" type="audio/mpeg">
+  </audio>
 
 <script>
  /* Музыка */
@@ -331,25 +369,17 @@ const detailsObs=new IntersectionObserver(e=>{
 },{threshold:.5});
 detailsObs.observe(details);
 
-// ==== Сердечки и спасибо ====
-const form=document.getElementById('rsvpForm');
-const msg=document.getElementById('thanksMsg');
-form.addEventListener('submit',e=>{
-  e.preventDefault();
-  msg.style.display='block';
-  for(let i=0;i<15;i++){
-    const h=document.createElement('div');
-    h.className='heart';
-    h.textContent=Math.random()>0.5?'💖':'🌸';
-    h.style.left=Math.random()*100+'vw';
-    h.style.fontSize=(16+Math.random()*16)+'px';
-    document.body.appendChild(h);
-    setTimeout(()=>h.remove(),3000);
-  }
-  setTimeout(()=>msg.style.display='none',4000);
-  form.reset();
-});
+/* Popup */
+    const form = document.getElementById('rsvpForm');
+    const popup = document.getElementById('thanksPopup');
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      popup.classList.add('show');
+      setTimeout(() => popup.classList.remove('show'), 2000);
+      form.reset();
+    });
 </script>
 </body>
 </html>
+
 
