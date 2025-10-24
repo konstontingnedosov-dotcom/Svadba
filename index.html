@@ -2,458 +2,562 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Свадебное приглашение — Юсуф & Лариза</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;500;700&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Свадьба — Юсуф & Лариза</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Great+Vibes&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
   <style>
-    :root{
-      --bg:#f8f8f9;
-      --card:#ffffff;
-      --muted:#8a8a8f;
-      --accent:#bdbdbf;
-      --shadow: rgba(26,26,26,0.06);
-      --max-width:1100px;
-    }
-    *{box-sizing:border-box}
-    html,body{height:100%;margin:0;font-family:'Montserrat',sans-serif;background:var(--bg);color:#2b2b2b}
-    a{color:inherit;text-decoration:none}
-
-    .page{max-width:var(--max-width);margin:40px auto;padding:28px;}
-
-    header.site-header{
-      position:sticky;top:18px;background:linear-gradient(180deg,var(--card),rgba(255,255,255,0.9));
-      backdrop-filter:blur(6px);
-      border-radius:14px;padding:14px 18px;
-      box-shadow:0 6px 18px var(--shadow);
-      display:flex;align-items:center;gap:16px;z-index:50
-    }
-    .logo{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;letter-spacing:0.6px}
-    .nav{margin-left:auto;display:flex;gap:8px}
-    .nav a{padding:8px 12px;border-radius:10px;font-size:14px;color:var(--muted)}
-    .nav a.primary{background:var(--accent);color:#fff}
-
-    /* === Большой таймер сверху === */
-    .big-countdown{
-      text-align:center;
-      margin-bottom:24px;
-      background:linear-gradient(180deg,#fff,#f5f5f5);
-      border-radius:14px;
-      padding:28px 16px;
-      box-shadow:0 6px 18px var(--shadow);
-      position:relative;
-      overflow:hidden;
-    }
-    .big-countdown h2{
-      font-family:'Playfair Display',serif;
-      margin:0 0 16px 0;
-      font-size:26px;
-      color:#2c2c2c;
-    }
-    .countdown-display{
-      display:flex;
-      justify-content:center;
-      gap:18px;
-      flex-wrap:wrap;
-    }
-    .countdown-block{
-      background:#fff;
-      border-radius:10px;
-      padding:12px 16px;
-      min-width:90px;
-      box-shadow:inset 0 0 10px rgba(0,0,0,0.04);
-    }
-    .countdown-num{
-      font-size:26px;
-      font-weight:700;
-      color:#2b2b2b;
-    }
-    .countdown-label{
-      font-size:13px;
-      color:var(--muted);
-      margin-top:4px;
+    :root {
+      --bg: #000;
+      --darkgray: #121212;
+      --midgray: #242424;
+      --lightgray: #3a3a3a;
+      --gold: #d4af37;
+      --petal-pink-1: #ffb7c5;
+      --petal-pink-2: #ffcdd6;
     }
 
-    .hero{margin-top:26px;background:linear-gradient(180deg,rgba(255,255,255,0.8),rgba(250,250,250,0.9));border-radius:16px;padding:34px;display:grid;grid-template-columns:1fr 340px;gap:28px;align-items:center;box-shadow:0 10px 30px var(--shadow)}
-
-    .hero-left h1{font-family:'Playfair Display',serif;font-size:48px;margin:0;color:#2c2c2c}
-    .hero-left p.lead{margin:10px 0 0;color:var(--muted);font-size:16px}
-
-    .hero-right{position:relative;padding:22px;border-radius:12px;background:linear-gradient(180deg,var(--card),#fafafa);box-shadow:0 6px 18px var(--shadow)}
-
-    section{margin-top:28px;padding:24px;border-radius:12px}
-    .section-card{background:var(--card);border-radius:12px;padding:22px;box-shadow:0 8px 22px var(--shadow);}
-
-    .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:20px}
-    .timeline{position:relative;padding-left:18px}
-    .timeline::before{content:'';position:absolute;left:8px;top:8px;bottom:8px;width:2px;background:linear-gradient(#e0e0e0,#cfcfcf)}
-    .timeline .item{position:relative;padding:14px 12px;margin-bottom:14px;border-radius:10px}
-    .timeline .item::before{content:'';position:absolute;left:-15px;top:18px;width:10px;height:10px;border-radius:50%;background:#fff;border:2px solid var(--accent)}
-
-    /* === Галерея 4 фото === */
-    .gallery{
-      display:grid;
-      grid-template-columns:repeat(2,1fr);
-      gap:12px;
-    }
-    .gallery img{
-      width:100%;
-      height:220px;
-      object-fit:cover;
-      border-radius:10px;
-      box-shadow:0 4px 14px var(--shadow);
-      transition:transform 0.3s ease;
-    }
-    .gallery img:hover{
-      transform:scale(1.03);
+    * { box-sizing: border-box; }
+    html,body { height: 100%; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--gold);
+      font-family: 'Montserrat', sans-serif;
+      scroll-behavior: smooth;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
     }
 
-    form.rsvp{display:flex;flex-direction:column;gap:12px}
-    input,textarea,select{padding:10px;border-radius:8px;border:1px solid #e6e6e6;font-size:14px}
-    button[type=submit]{padding:12px 16px;border-radius:10px;border:0;background:var(--muted);color:#fff;font-weight:600;cursor:pointer;transition:transform .18s ease}
-    button[type=submit]:active{transform:scale(.98)}
+<script src="2-index.html" type="module" defer></script>
 
-    /* === Анимация после отправки === */
-    .thanks-popup{
-      position:fixed;
-      inset:0;
-      background:rgba(255,255,255,0.7);
-      backdrop-filter:blur(6px);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      opacity:0;
-      pointer-events:none;
-      transition:opacity .6s ease;
-      z-index:999;
-    }
-    .thanks-popup.show{
-      opacity:1;
-      pointer-events:auto;
-    }
-    .thanks-box{
-      background:var(--card);
-      padding:40px 50px;
-      border-radius:16px;
-      box-shadow:0 8px 30px var(--shadow);
-      text-align:center;
-      animation:pop .7s ease forwards;
-    }
-    @keyframes pop{
-      0%{transform:scale(0.8);opacity:0}
-      100%{transform:scale(1);opacity:1}
+    a { color: var(--gold); text-decoration: none; }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(255, 215, 0, 0.05);
+      padding: 15px 20px;
+      border-radius: 12px;
+      position: sticky;
+      top: 10px;
+      z-index: 110;
     }
 
-    @media (max-width:980px){
-      .hero{grid-template-columns:1fr;}
-      .gallery{grid-template-columns:1fr;}
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
     }
-    @media (max-width:520px){
-      .page{margin:18px;padding:14px}
-      header.site-header{flex-direction:column;align-items:flex-start;gap:10px}
-      .hero-left h1{font-size:34px}
-      .gallery img{height:160px}
+
+    .nav {
+      display: flex;
+      gap: 10px;
     }
+
+    .nav a {
+      padding: 8px 12px;
+      border-radius: 8px;
+      transition: 0.3s;
+    }
+
+    .nav a:hover {
+      background: var(--gold);
+      color: black;
+    }
+
+    .page {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 20px;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* Градиент: чем ближе к границе (золоту) тем светлее серый */
+    .grad-block {
+      background: linear-gradient(180deg, var(--darkgray), var(--lightgray));
+      border: 1px solid var(--gold);
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(212,175,55,0.15);
+    }
+
+    .big-countdown {
+      text-align: center;
+      margin-top: 30px;
+      padding: 20px;
+    }
+
+    .countdown-display {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-top: 10px;
+    }
+
+    /* Серые квадратики вокруг цифр */
+    .countdown-box {
+      background: linear-gradient(180deg, #2a2a2a 0%, #3a3a3a 100%);
+      color: var(--gold);
+      padding: 12px 14px;
+      border-radius: 8px;
+      min-width: 96px;
+      text-align: center;
+      box-shadow: inset 0 0 8px rgba(255,255,255,0.02);
+    }
+
+    .countdown-num {
+      font-size: 28px;
+      font-weight: 700;
+      display: block;
+    }
+
+    /* Главный блок */
+    .hero {
+      display: grid;
+      grid-template-columns: 1fr 350px;
+      gap: 30px;
+      align-items: start;
+      margin-top: 30px;
+    }
+
+    .photo-holder {
+      position: relative;
+      border-radius: 16px;
+      overflow: hidden;
+      background-size: cover;
+      background-position: center;
+      aspect-ratio: 850 / 1280;
+      box-shadow: 0 0 20px rgba(212,175,55,0.18);
+    }
+
+    /* Надпись: сверху слева, без фона, будто часть фото */
+    .photo-holder .title {
+      position: absolute;
+      top: 12px;
+      left: 16px;
+      font-family: 'Great Vibes', cursive;
+      font-size: 48px;
+      color: var(--gold);
+      /* фон убран, чтобы надпись выглядела как часть фото */
+      background: transparent;
+      padding: 0;
+      margin: 0;
+      line-height: 1;
+      text-shadow: 0 2px 6px rgba(0,0,0,0.6);
+      z-index: 5;
+      pointer-events: none;
+      text-align: left;
+    }
+
+    .hero-right {
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 0 10px rgba(212,175,55,0.12);
+      opacity: 0;
+      transform: translateY(40px);
+      transition: 1s ease;
+      background: linear-gradient(180deg, var(--midgray), var(--lightgray));
+      border: 1px solid var(--gold);
+    }
+
+    section {
+      margin-top: 40px;
+      padding: 20px;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: 1s ease;
+      background: linear-gradient(180deg, var(--darkgray), var(--lightgray));
+      border: 1px solid var(--gold);
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(212,175,55,0.12);
+    }
+
+    h3 {
+      font-family: 'Playfair Display', serif;
+      color: var(--gold);
+      margin-bottom: 15px;
+    }
+
+    /* Программа */
+    .timeline {
+      display: grid;
+      gap: 20px;
+    }
+
+    .timeline .item {
+      text-align: center;
+    }
+
+    .timeline .item img {
+      width: 100%;
+      border-radius: 12px;
+      object-fit: cover;
+      box-shadow: 0 0 15px rgba(212,175,55,0.3);
+      /* ← ТУТ МОЖНО МЕНЯТЬ РАЗМЕР ФОТО ↓↓↓
+         Вы можете редактировать каждую фотографию вручную — просто поменяйте путь в src,
+         и при необходимости установите width/height.
+         Примеры строк ниже:
+         <img src="images/foto-5.jpg" alt="" width="600" height="400">
+         <img src="images/foto-6.jpg" alt="" width="600" height="400">
+         */
+      height: 400px;
+    }
+
+    /* Галерея */
+    .gallery {
+      text-align: center;
+    }
+
+    .photo-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .photo-grid img {
+      width: 100%;
+      border-radius: 12px;
+      object-fit: cover;
+      box-shadow: 0 0 20px rgba(212,175,55,0.3);
+    }
+
+    /* Форма RSVP */
+    form.rsvp {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    input, textarea, select {
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid var(--gold);
+      background: black;
+      color: var(--gold);
+      font-size: 14px;
+    }
+
+    button[type=submit] {
+      padding: 12px;
+      border-radius: 8px;
+      background: black;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      cursor: pointer;
+      font-weight: bold;
+      transition: 0.2s;
+    }
+
+    button[type=submit]:hover {
+      background: var(--gold);
+      color: black;
+    }
+
+    /* Popup (тот, что уже есть у тебя) */
+    .thanks-popup {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: 0.3s;
+      z-index: 1000;
+    }
+
+    .thanks-popup.show {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .thanks-box {
+      background: linear-gradient(180deg, var(--midgray), var(--lightgray));
+      border: 1px solid var(--gold);
+      padding: 30px;
+      border-radius: 12px;
+      text-align: center;
+      color: var(--gold);
+      box-shadow: 0 0 10px rgba(212,175,55,0.3);
+    }
+
+    /* Анимация появления при скролле */
+    .visible {
+      opacity: 1 !important;
+      transform: translateY(0) !important;
+    }
+
+    /* === Лепестки и сердечки (твоя точная строка, как просил) === */
+    /* Лепестки и сердечки */
+    .petal, .heart {
+      position: fixed;
+      top: -30px;
+      pointer-events: none;
+      z-index: 999;
+      animation: fall linear forwards;
+    }
+
+    /* Дополнительные стили для лепестков (форма похожая на лепесток сакуры) */
+    .petal {
+      width: 14px;
+      height: 18px;
+      transform-origin: center;
+      background: radial-gradient(circle at 35% 35%, var(--petal-pink-2), var(--petal-pink-1));
+      border-radius: 60% 40% 40% 60%;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+      opacity: 0.95;
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.15));
+    }
+
+    /* Маленькие вариации через data-size */
+    .petal[data-size="s"] { width: 8px; height: 10px; opacity: 0.9; }
+    .petal[data-size="m"] { width: 12px; height: 16px; }
+    .petal[data-size="l"] { width: 18px; height: 22px; }
+
+    /* Сердечки (золотые) */
+    .heart {
+      font-size: 18px;
+      color: var(--gold);
+      text-shadow: 0 1px 2px rgba(0,0,0,0.4);
+      opacity: 0.95;
+    }
+
+    /* Анимации падения (общая) */
+    @keyframes fall {
+      0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(110vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    /* Адаптация */
+    @media (max-width: 768px) {
+      .hero { grid-template-columns: 1fr; }
+      .photo-grid { grid-template-columns: 1fr; }
+      .photo-holder .title { font-size: 34px; left: 12px; top: 10px; }
+      .countdown-box { min-width: 72px; padding: 8px 10px; }
+      .hero-right { padding: 16px; }
+    }
+
   </style>
 </head>
 <body>
-  
-<div class="page">
-    <header class="site-header">
+
+  <div class="page">
+    <header>
       <div class="logo">Юсуф &amp; Лариза</div>
       <nav class="nav">
         <a href="#details">Детали</a>
         <a href="#schedule">Программа</a>
         <a href="#gallery">Фото</a>
-        <a href="#rsvp" class="primary">RSVP</a>
+        <a href="#rsvp">RSVP</a>
       </nav>
     </header>
 
-    <!-- === Большой таймер сверху === -->
-    <div class="big-countdown">
+    <div class="big-countdown grad-block">
       <h2>До нашей свадьбы осталось:</h2>
       <div class="countdown-display">
-        <div class="countdown-block"><div class="countdown-num" id="bigDays">--</div><div class="countdown-label">Дней</div></div>
-        <div class="countdown-block"><div class="countdown-num" id="bigHours">--</div><div class="countdown-label">Часов</div></div>
-        <div class="countdown-block"><div class="countdown-num" id="bigMinutes">--</div><div class="countdown-label">Минут</div></div>
-        <div class="countdown-block"><div class="countdown-num" id="bigSeconds">--</div><div class="countdown-label">Секунд</div></div>
+        <div class="countdown-box"><span class="countdown-num" id="days">--</span><small>Дней</small></div>
+        <div class="countdown-box"><span class="countdown-num" id="hours">--</span><small>Часов</small></div>
+        <div class="countdown-box"><span class="countdown-num" id="minutes">--</span><small>Минут</small></div>
+        <div class="countdown-box"><span class="countdown-num" id="seconds">--</span><small>Секунд</small></div>
       </div>
     </div>
 
-    <main>
-      <!-- HERO -->
-      <section class="hero">
-        <div class="hero-left">
-          <h1>Приглашаем на нашу свадьбу</h1>
-          <p class="lead">Юсуф &amp; Лариза — 3 ноября 2025. Тёплая, классическая церемония в спокойной бело-серой гамме.</p>
+    <section class="hero">
+      <!-- Фото: поменять 'images/foto-3.jpg' на свою, надпись будет поверх фото в левом верхнем углу -->
+      <div class="photo-holder" style="background-image:url('images/foto-3.jpg');">
+        <div class="title">Приглашаем на нашу свадьбу</div>
+      </div>
+
+      <div class="hero-right grad-block">
+        <p>Юсуф &amp; Лариза — 3 ноября 2025. Тёплая, классическая церемония в бело-серой гамме.</p>
+        <h3>О нас</h3>
+        <p>Два сердца, одна история. Мы ценим простоту, уют и честные эмоции. Будем рады видеть вас на нашем празднике.</p>
+      </div>
+    </section>
+
+    <section id="details">
+      <h3>Детали церемонии</h3>
+      <p><strong>Время:</strong> 3 ноября 2025, 16:00</p>
+      <p><strong>Место:</strong> Ресторан «Ала-Арча», Сокулук</p>
+      <p><strong>Дресс-код:</strong> классический, бело-серая палитра</p>
+      <p><strong>Парковка:</strong> на территории ресторана</p>
+      <p><strong>Контакт:</strong> +996 221 404606</p>
+    </section>
+
+    <section id="schedule">
+      <h3>Программа вечера</h3>
+      <div class="timeline">
+        <!-- ↓↓↓ РУЧНОЕ ИЗМЕНЕНИЕ ФОТО: поменяй src и при необходимости width/height прямо здесь ↓↓↓ -->
+        <!-- Пример: <img src="images/foto-5.jpg" alt="" width="800" height="600"> -->
+        <div class="item">
+          <img src="images/foto-5.jpg" alt="" width="800" height="400">
+          <div>16:00 — Встреча гостей</div>
         </div>
 
-        <aside class="hero-right">
-          <div style="font-size:13px;color:var(--muted);margin-bottom:8px">Коротко о нас</div>
-          <div style="font-family:'Playfair Display',serif;font-size:20px;color:#2b2b2b">Два сердца, одна история</div>
-          <p style="margin-top:8px;color:var(--muted);font-size:14px">Мы ценим простоту, уют и честные эмоции. Будем рады видеть вас на нашем празднике.</p>
-        </aside>
-      </section>
-
-      <!-- Детали -->
-      <section id="details">
-        <div class="section-card">
-          <h3 style="font-family:'Playfair Display',serif">Детали церемонии</h3>
-          <div class="grid-2">
-            <div>
-              <p><strong>Время:</strong> 3 ноября 2025, 16:00</p>
-              <p><strong>Место:</strong> Ресторан «Ала-Арча», Сокулук</p>
-              <p><strong>Дресс-код:</strong> классический, бело-серая палитра</p>
-            </div>
-            <div>
-              <p><strong>Парковка:</strong> на территории ресторана</p>
-              <p><strong>Контакт:</strong> +996 221 404606</p>
-            </div>
-          </div>
+        <div class="item">
+          <img src="images/foto-6.jpg" alt="" width="800" height="400">
+          <div>17:30 — Церемония</div>
         </div>
-      </section>
 
-      <!-- Программа -->
-      <section id="schedule">
-        <div class="section-card">
-          <h3 style="font-family:'Playfair Display',serif">Программа вечера</h3>
-          <div class="timeline">
-            <div class="item"><strong>16:00</strong> — Встреча гостей</div>
-            <div class="item"><strong>17:30</strong> — Церемония</div>
-            <div class="item"><strong>20:00</strong> — Банкет</div>
-            <div class="item"><strong>20;31</strong></strong> — Прибыл годжо сатору</div>
-          </div>
+        <div class="item">
+          <img src="images/foto-7.jpg" alt="" width="800" height="400">
+          <div>20:00 — Банкет</div>
         </div>
-      </section>
 
-   
-<!-- Секция с фотографиями -->
-<section class="gallery">
-    <h2>Наши фото</h2>
-    <div class="photo-grid">
-        <img src="images/foto-1.jpg" alt="Фото 1">
-        <img src="images/foto-2.jpg" alt="Фото 2">
-        <img src="images/foto-3.jpg" alt="Фото 3">
-        <img src="images/.jpg" alt="Фото 4">
-    </div>
-</section>
-
-<style>
-.gallery {
-    text-align: center;
-    padding: 60px 20px;
-    background: #fffaf7;
-}
-
-.gallery h2 {
-    font-size: 2.2em;
-    margin-bottom: 40px;
-    color: #a35a5a;
-    font-family: 'Playfair Display', serif;
-}
-
-/* Сетка 2x2 */
-.photo-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-gap: 30px;
-    justify-items: center;
-    align-items: center;
-    max-width: 900px;
-    margin: 0 auto;
-}
-
-.photo-grid img {
-    width: 100%;
-    max-width: 400px;
-    height: 600px;
-    object-fit: cover;
-    border-radius: 20px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.15);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.photo-grid img:hover {
-    transform: scale(1.05);
-    box-shadow: 0 10px 25px rgba(0,0,0,0.25);
-}
-
-/* Адаптив под телефон */
-@media (max-width: 768px) {
-    .photo-grid {
-        grid-template-columns: 1fr;
-    }
-    .photo-grid img {
-        max-width: 90%;
-        height: auto;
-    }
-}
-</style>
-
-
-
-
-<audio id="bgAudio" preload="auto" loop>
-  <source src="music.mp3" type="audio/mpeg">
-</audio>
-
-<script>
-  const music = document.getElementById('bgAudio');
-  let isPlaying = false;
-
-  document.addEventListener('click', async () => {
-    try {
-      if (!isPlaying) {
-        await music.play();
-        music.volume = 0.8;
-        isPlaying = true;
-        console.log('Музыка включена');
-      } else {
-        music.pause();
-        isPlaying = false;
-        console.log('Музыка выключена');
-      }
-    } catch (err) {
-      console.warn('Ошибка при воспроизведении музыки:', err);
-    }
-  });
-</script>
-
-
-
-      <!-- RSVP -->
-      <section id="rsvp">
-        <div class="section-card">
-          <h3 style="font-family:'Playfair Display',serif">Подтверждение участия (RSVP)</h3>
-          <form class="rsvp" onsubmit="event.preventDefault();showThanks()">
-            <input type="text" name="name" placeholder="Ваше имя" required>
-            <input type="tel" name="phone" placeholder="Телефон" required>
-            <select name="coming" required>
-              <option value="">Придёте ли вы?</option>
-              <option value="yes">Да, я буду</option>
-              <option value="no">К сожалению, нет</option>
-            </select>
-            <textarea name="note" rows="3" placeholder="Сообщение"></textarea>
-            <button type="submit">Отправить</button>
-          </form>
+        <div class="item">
+          <img src="images/foto-8.jpg" alt="" width="800" height="400">
+          <div>21:00 — Танцы</div>
         </div>
-      </section>
-    </main>
-  </div>
+      </div>
+    </section>
 
-  <!-- popup благодарности -->
-  <div class="thanks-popup" id="thanksPopup">
-    <div class="thanks-box">
-      <h2 style="font-family:'Playfair Display',serif;margin:0 0 10px 0;">Спасибо!</h2>
-      <p style="color:var(--muted);margin:0;">Ваш ответ получен 💌</p>
+    <section id="gallery" class="gallery">
+      <h3>Галерея</h3>
+      <div class="photo-grid">
+        <img src="images/foto-1.jpg" alt="">
+        <img src="images/foto-2.jpg" alt="">
+      </div>
+    </section>
+
+    <!-- RSVP: оставлено как у тебя, но мы добавили обработчик ниже для сердечек -->
+    <section id="rsvp">
+      <h3>Подтверждение участия</h3>
+      <form class="rsvp" id="rsvpForm">
+        <input type="text" name="name" placeholder="Ваше имя" required>
+        <input type="tel" name="phone" placeholder="Телефон" required>
+        <select name="coming" required>
+          <option value="">Придёте ли вы?</option>
+          <option value="yes">Да, я буду</option>
+          <option value="no">К сожалению, нет</option>
+        </select>
+        <textarea name="note" rows="3" placeholder="Сообщение"></textarea>
+        <button type="submit">Отправить</button>
+      </form>
+    </section>
+
+    <div class="thanks-popup" id="thanksPopup">
+      <div class="thanks-box">
+        <h2>Спасибо!</h2>
+        <p>Ваш ответ получен 💌</p>
+      </div>
     </div>
   </div>
 
- 
+  <audio id="bgAudio" preload="auto" loop>
+    <source src="musik/music.mp3" type="audio/mpeg">
+  </audio>
 
   <script>
+    /* Таймер */
     const target = new Date('2025-11-03T16:00:00');
-    function pad(n){return String(n).padStart(2,'0');}
-    function updateCountdown(){
+    const pad = n => String(n).padStart(2,'0');
+    function updateTimer(){
       const now = new Date();
-      let diff = Math.max(0, target - now);
+      const diff = Math.max(0, target - now);
       const d = Math.floor(diff / (1000*60*60*24));
       const h = Math.floor((diff / (1000*60*60)) % 24);
       const m = Math.floor((diff / (1000*60)) % 60);
       const s = Math.floor((diff / 1000) % 60);
-      document.getElementById('bigDays').textContent = pad(d);
-      document.getElementById('bigHours').textContent = pad(h);
-      document.getElementById('bigMinutes').textContent = pad(m);
-      document.getElementById('bigSeconds').textContent = pad(s);
+      document.getElementById('days').textContent = pad(d);
+      document.getElementById('hours').textContent = pad(h);
+      document.getElementById('minutes').textContent = pad(m);
+      document.getElementById('seconds').textContent = pad(s);
     }
-    updateCountdown(); setInterval(updateCountdown,1000);
+    updateTimer();
+    setInterval(updateTimer, 1000);
 
-    function showThanks(){
-      const popup = document.getElementById('thanksPopup');
-      popup.classList.add('show');
-      setTimeout(()=>popup.classList.remove('show'),3000);
-      document.querySelector('form.rsvp').reset();
-    }
-  
+    /* Плавное появление при скролле */
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) e.target.classList.add('visible');
+      });
+    }, { threshold: 0.2 });
+    document.querySelectorAll('section, .hero-right').forEach(el => observer.observe(el));
+
+    /* Музыка: клик для старта/паузы (как было) */
+    const music = document.getElementById('bgAudio');
+    let playing = false;
+    document.addEventListener('click', async e => {
+      const tag = e.target.tagName.toLowerCase();
+      if (['input','select','textarea','button'].includes(tag)) return;
+      try {
+        if (!playing) { await music.play(); playing = true; } else { music.pause(); playing = false; }
+      } catch {}
+    });
+
+    /* Падающие лепестки сакуры: реалистичные формы */
     function createPetal() {
       const petal = document.createElement('div');
-      petal.classList.add('petal');
+      petal.className = 'petal';
+      // маленькие/средние/большие
+      const size = Math.random() < 0.6 ? 'm' : (Math.random() < 0.8 ? 's' : 'l');
+      petal.setAttribute('data-size', size);
+      // случайная горизонтальная позиция
       petal.style.left = Math.random() * 100 + 'vw';
-      petal.style.animationDuration = 5 + Math.random() * 5 + 's';
-      petal.style.opacity = Math.random();
+      // чуть разная длительность падения
+      petal.style.animationDuration = (6 + Math.random()*6) + 's';
+      // случайный стартовый поворот
+      petal.style.transform = `rotate(${Math.random()*360}deg)`;
+      // мягкое колебание (через ключевые кадры не задаём — используем чуть разный translateX анимацией)
+      petal.style.opacity = (0.7 + Math.random()*0.3).toString();
       document.body.appendChild(petal);
-      setTimeout(() => petal.remove(), 10000);
+      // удаляем, когда анимация закончится (больше 12s безопасно)
+      setTimeout(()=> {
+        if (petal && petal.parentNode) petal.parentNode.removeChild(petal);
+      }, 12000);
+    }
+    // интенсивность лепестков — раз в 160ms (можно менять на больше/меньше)
+    setInterval(createPetal, 160);
+
+    /* Обработка отправки формы — показываем твой popup (тот же .thanks-popup),
+       добавляем падающие золотые сердечки и возвращаем наверх */
+    const form = document.getElementById('rsvpForm');
+    const popup = document.getElementById('thanksPopup');
+
+    function createHeart() {
+      const h = document.createElement('div');
+      h.className = 'heart';
+      h.innerHTML = '💛';
+      h.style.left = Math.random() * 100 + 'vw';
+      h.style.fontSize = (12 + Math.random()*18) + 'px';
+      // длительность падения
+      h.style.animationDuration = (3 + Math.random()*3) + 's';
+      // легкий задержка появления (чтобы не все одновременно)
+      h.style.opacity = '0.95';
+      document.body.appendChild(h);
+      setTimeout(()=> { if (h.parentNode) h.parentNode.removeChild(h); }, 7000);
     }
 
-    function startPetals() {
-      const interval = setInterval(createPetal, 100);
-      setTimeout(() => clearInterval(interval), 3000); // лепестки падают 3 секунды
-    }
-
-    function showThanks() {
-      const popup = document.getElementById('thanksPopup');
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      // показать существующий popup (тот который в твоём код)
       popup.classList.add('show');
-      startPetals(); // запускаем лепестки
-      setTimeout(() => popup.classList.remove('show'), 3000);
-      document.querySelector('form.rsvp').reset();
-    }
-  </script>
 
-  <style>
-    /* 🌸 Анимация лепестков */
-    .petal {
-      position: fixed;
-      top: -10px;
-      width: 20px;
-      height: 14px;
-      background: pink;
-      border-radius: 50% 50% 50% 0;
-      opacity: 0.8;
-      transform: rotate(45deg);
-      pointer-events: none;
-      animation: fall linear forwards;
-      z-index: 1000;
-    }
-
-    @keyframes fall {
-      0% {
-        transform: translateY(0) rotate(0deg);
+      // добавить много сердечек в течение 1.2s
+      const heartsCount = 36;
+      for (let i=0;i<heartsCount;i++){
+        setTimeout(createHeart, i * 30);
       }
-      100% {
-        transform: translateY(110vh) rotate(720deg);
-      }
-    }
-  </style>
-<!-- ✨ Эффект плавного появления/исчезновения при прокрутке -->
-<style>
-  .fade-section {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 1.2s ease, transform 1.2s ease;
-  }
-  .fade-section.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-</style>
 
-<script>
-  // Добавляем класс fade-section ко всем основным блокам
-  document.querySelectorAll('section, .hero, .photo-grid img').forEach(el => {
-    el.classList.add('fade-section');
-  });
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-      } else {
-        entry.target.classList.remove('visible');
-      }
+      // закрыть popup через 2200ms (как в твоём код), затем скролл наверх
+      setTimeout(()=> {
+        popup.classList.remove('show');
+        // сброс формы
+        form.reset();
+        // плавный скролл наверх
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }, 2200);
     });
-  }, { threshold: 0.2 });
 
-  document.querySelectorAll('.fade-section').forEach(el => observer.observe(el));
-</script>
+  </script>
 
 </body>
 </html>
