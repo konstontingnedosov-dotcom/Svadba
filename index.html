@@ -348,5 +348,57 @@
       document.querySelector('form.rsvp').reset();
     }
   </script>
+    <!-- 🌸 Скрипт лепестков -->
+  <script>
+    function createPetal() {
+      const petal = document.createElement('div');
+      petal.classList.add('petal');
+      petal.style.left = Math.random() * 100 + 'vw';
+      petal.style.animationDuration = 5 + Math.random() * 5 + 's';
+      petal.style.opacity = Math.random();
+      document.body.appendChild(petal);
+      setTimeout(() => petal.remove(), 10000);
+    }
+
+    function startPetals() {
+      const interval = setInterval(createPetal, 100);
+      setTimeout(() => clearInterval(interval), 3000); // лепестки падают 3 секунды
+    }
+
+    function showThanks() {
+      const popup = document.getElementById('thanksPopup');
+      popup.classList.add('show');
+      startPetals(); // запускаем лепестки
+      setTimeout(() => popup.classList.remove('show'), 3000);
+      document.querySelector('form.rsvp').reset();
+    }
+  </script>
+
+  <style>
+    /* 🌸 Анимация лепестков */
+    .petal {
+      position: fixed;
+      top: -10px;
+      width: 20px;
+      height: 14px;
+      background: pink;
+      border-radius: 50% 50% 50% 0;
+      opacity: 0.8;
+      transform: rotate(45deg);
+      pointer-events: none;
+      animation: fall linear forwards;
+      z-index: 1000;
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(0) rotate(0deg);
+      }
+      100% {
+        transform: translateY(110vh) rotate(720deg);
+      }
+    }
+  </style>
+
 </body>
 </html>
