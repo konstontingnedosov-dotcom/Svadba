@@ -75,23 +75,72 @@ body{
   position:relative;
   border-radius:16px;
   overflow:hidden;
-  background:url('images/foto-3.jpg') center/cover;
+  background:url('images/foto-1.jpg') center/cover;
   box-shadow:0 0 20px rgba(212,175,55,.3);
   aspect-ratio:850/1280;
 }
 .photo-holder .title{
   position:absolute;
-  top:50%;
-  left:20px;
-  transform:translate(-100%,-50%);
+  left:50%;
+  bottom:20px;
+  transform:translateX(-50%);
   font-family:'Great Vibes',cursive;
-  font-size:48px;
+  font-size:46px;
+  font-weight: 550;
   color:var(--gold);
+  text-shadow:
+    0 0 10px rgba(212,175,55,0.7),
+    0 0 20px rgba(212,175,55,0.5),
+    0 0 40px rgba(212,175,55,0.3);
+  padding:0;
+  border-radius:0;
   opacity:0;
-  animation:slideInLeft 1.5s forwards .5s;
+  text-align:center;
+  line-height:1.3em;
+  white-space:pre-line; /* перенос строки без <br> */
+  animation:burnIn 2.4s ease-out forwards .4s;
 }
-@keyframes slideInLeft{
-  to{transform:translate(0,-50%);opacity:1;}
+.photo-holder .title{
+  position:absolute;
+  left:50%;
+  bottom:20px;
+  transform:translateX(-50%);
+  font-family:'Great Vibes',cursive;
+  font-size:46px;
+  color:var(--gold);
+  text-shadow:
+    0 0 10px rgba(212,175,55,0.7),
+    0 0 20px rgba(212,175,55,0.5),
+    0 0 40px rgba(212,175,55,0.3);
+  padding:0;
+  border-radius:0;
+  opacity:0;
+  text-align:center;
+  line-height:1.3em;
+  white-space:pre-line; /* перенос строки без <br> */
+  animation:burnIn 2.4s ease-out forwards .4s;
+}
+
+@keyframes burnIn {
+  0% {
+    opacity:0;
+    filter:blur(6px) brightness(2);
+    text-shadow:
+      0 0 30px rgba(255,255,200,0.9),
+      0 0 60px rgba(255,255,150,0.6),
+      0 0 100px rgba(255,255,100,0.4);
+  }
+  50% {
+    opacity:1;
+    filter:blur(2px) brightness(1.6);
+  }
+  100% {
+    opacity:1;
+    filter:blur(0) brightness(1);
+    text-shadow:
+      0 0 10px rgba(212,175,55,0.8),
+      0 0 20px rgba(212,175,55,0.6);
+  }
 }
 
 /* ==== Правый текст с эффектом набора ==== */
@@ -102,6 +151,7 @@ body{
   padding:20px;
   box-shadow:0 0 10px rgba(212,175,55,0.15);
 }
+
 .typewriter{white-space:pre-line;font-size:14px;min-height:200px;}
 
 /* ==== Секции ==== */
@@ -237,7 +287,7 @@ h3{font-family:'Playfair Display',serif;margin-bottom:15px;color:var(--gold)}
 
   <section class="hero">
     <div class="photo-holder">
-      <div class="title">Приглашаем на нашу свадьбу</div>
+      <div class="title">Приглашаем на нашу<br>  свадьбу</div>
     </div>
     <div class="hero-right">
       <div class="typewriter" id="typewriter"></div>
@@ -268,12 +318,12 @@ h3{font-family:'Playfair Display',serif;margin-bottom:15px;color:var(--gold)}
   <section id="gallery" class="gallery">
     <h3>Галерея</h3>
     <div class="photo-grid">
-      <img src="images/foto-1.jpg" alt="">
+      <img src="images/foto-3.jpg" alt="">
       <img src="images/foto-2.jpg" alt="">
     </div>
   </section>
 
-  section id="rsvp">
+  <section id="rsvp">
       <h3>Подтверждение участия</h3>
       <form class="rsvp" id="rsvpForm">
         <input type="text" name="name" placeholder="Ваше имя" required>
@@ -378,8 +428,32 @@ detailsObs.observe(details);
       setTimeout(() => popup.classList.remove('show'), 2000);
       form.reset();
     });
+    
+
+// 💖 Анимация сердечек при отправке формы
+function launchHearts() {
+  for (let i = 0; i < 25; i++) {
+    setTimeout(() => {
+      const heart = document.createElement('div');
+      heart.classList.add('heart');
+      heart.textContent = '💖';
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.fontSize = (16 + Math.random() * 12) + 'px';
+      heart.style.animationDuration = (2 + Math.random() * 1.5) + 's';
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 4000);
+    }, i * 80);
+  }
+}
+
+// Вызов при отправке
+form.addEventListener('submit', e => {
+  e.preventDefault();
+  popup.classList.add('show');
+  setTimeout(() => popup.classList.remove('show'), 2000);
+  form.reset();
+  launchHearts(); // 💖 запускаем анимацию
+});
 </script>
 </body>
 </html>
-
-
