@@ -289,28 +289,46 @@
 }
 </style>
 
-<!-- 🎵 Кнопка включения музыки -->
-<div id="musicPrompt" 
-     style="position:fixed;inset:0;background:rgba(0,0,0,0.6);
-     color:white;display:flex;align-items:center;justify-content:center;
-     font-size:22px;font-family:'Playfair Display',serif;
-     z-index:2000;transition:opacity 1s ease;">
-  🔊 Нажмите, чтобы включить музыку
+      <audio id="music" loop>
+  <source src="music/music.mp3" type="audio/mpeg">
+</audio>
+
+
+<!-- 🎵 Кнопка управления музыкой -->
+<div id="musicToggle"
+     style="position:fixed;bottom:25px;right:25px;width:60px;height:60px;
+     background:rgba(255,192,203,0.9);border-radius:50%;box-shadow:0 4px 12px rgba(0,0,0,0.2);
+     display:flex;align-items:center;justify-content:center;cursor:pointer;
+     font-size:28px;color:#fff;font-family:'Playfair Display',serif;
+     z-index:2000;transition:transform 0.3s ease, background 0.3s ease;">
+  🎵
 </div>
 
 <script>
-  const prompt = document.getElementById('musicPrompt');
-  const music = document.getElementById('music'); // твой тег <audio id="music">
+  const music = document.getElementById('music'); // твой <audio id="music">
+  const toggle = document.getElementById('musicToggle');
+  let playing = false;
 
-  document.addEventListener('click', () => {
-    if (music) {
-      music.volume = 0.5;
-      music.play().catch(err => console.warn('Музыка не запущена:', err));
+  // При нажатии — включаем/выключаем музыку
+  toggle.addEventListener('click', () => {
+    if (!music) return;
+    if (!playing) {
+      music.volume = 0.6;
+      music.play().catch(err => console.warn('Ошибка воспроизведения:', err));
+      toggle.style.background = 'rgba(255,105,180,0.9)'; // розовый поярче
+      toggle.textContent = '⏸️';
+      playing = true;
+    } else {
+      music.pause();
+      toggle.style.background = 'rgba(255,192,203,0.9)';
+      toggle.textContent = '🎵';
+      playing = false;
     }
-    prompt.style.opacity = '0';
-    setTimeout(() => prompt.remove(), 1000);
-  }, { once: true });
+    toggle.style.transform = 'scale(1.1)';
+    setTimeout(() => toggle.style.transform = 'scale(1)', 150);
+  });
 </script>
+
 
 
 
