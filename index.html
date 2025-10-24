@@ -158,17 +158,34 @@
 <body>
   
 <div class="page">
-    <header class="site-header">
-      <div class="logo">Юсуф &amp; Лариза</div>
-    <nav class="nav">
-  <a href="#details">Детали</a>
-  <a href="#schedule">Программа</a>
-  <a href="#gallery">Фото</a>
-  <a href="#" id="toggleSound">Звук 🔇</a>
-  <a href="#rsvp" class="primary">RSVP</a>
-</nav>
+    <header class="site-header" style="text-align:center; padding:20px 0; font-family:'Playfair Display',serif;">
+  <div class="logo" style="font-size:28px; font-weight:bold; margin-bottom:10px;">
+    Юсуф &amp; Лариза
+  </div>
 
-    </header>
+  <!-- Верхнее меню -->
+  <nav class="nav" style="display:flex;justify-content:center;gap:40px;margin-bottom:10px;">
+    <a href="#details" style="text-decoration:none;color:#333;font-size:18px;">Детали</a>
+    <a href="#schedule" style="text-decoration:none;color:#333;font-size:18px;">Программа</a>
+    <a href="#gallery" style="text-decoration:none;color:#333;font-size:18px;">Фото</a>
+  </nav>
+
+  <!-- Нижние кнопки по центру -->
+  <div style="display:flex;justify-content:center;gap:20px;margin-top:10px;">
+    <button id="toggleSound" 
+            style="padding:8px 20px;font-size:16px;border:none;border-radius:10px;
+                   background:#f3f3f3;cursor:pointer;transition:all 0.3s ease;">
+      Звук 🔇
+    </button>
+    <a href="#rsvp" 
+       style="padding:8px 20px;font-size:16px;border:none;border-radius:10px;
+              background:#ffb6c1;color:#fff;text-decoration:none;cursor:pointer;
+              transition:all 0.3s ease;">
+      RSVP
+    </a>
+  </div>
+</header>
+
   
 
     <!-- === Большой таймер сверху === -->
@@ -301,8 +318,7 @@
   const soundBtn = document.getElementById('toggleSound');
   let isPlaying = false;
 
-  soundBtn.addEventListener('click', (e) => {
-    e.preventDefault();
+  soundBtn.addEventListener('click', () => {
     if (!music) return;
 
     if (!isPlaying) {
@@ -310,17 +326,20 @@
       music.volume = 0.6;
       music.play().catch(err => console.warn('Не удалось запустить музыку:', err));
       soundBtn.textContent = 'Звук 🔊';
-      soundBtn.style.color = '#2b2b2b';
+      soundBtn.style.background = '#ffb6c1';
+      soundBtn.style.color = '#fff';
       isPlaying = true;
     } else {
       // ⏹️ Выключаем музыку
       music.pause();
       soundBtn.textContent = 'Звук 🔇';
-      soundBtn.style.color = 'var(--muted)';
+      soundBtn.style.background = '#f3f3f3';
+      soundBtn.style.color = '#333';
       isPlaying = false;
     }
   });
 </script>
+
 
 
 
