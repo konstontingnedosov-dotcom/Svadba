@@ -290,60 +290,32 @@
 </style>
 
 
-<audio id="bgAudio" loop>
-  <source src="musiс/music.mp3" type="audio/mpeg">
-</audio>
 
-      <!-- 🎵 Кнопка включения музыки -->
-<div id="musicPrompt" 
-     style="position:fixed;inset:0;background:rgba(0,0,0,0.6);
-     color:white;display:flex;align-items:center;justify-content:center;
-     font-size:22px;font-family:'Playfair Display',serif;
-     z-index:2000;transition:opacity 1s ease;">
-  🔊 Нажмите, чтобы включить музыку
-</div>
 
-<audio id="bgAudio" loop>
-  <source src="musiс/music.mp3" type="audio/mpeg">
+<audio id="bgAudio" preload="auto" loop>
+  <source src="musik/music.mp3" type="audio/mpeg">
 </audio>
 
 <script>
-  const prompt = document.getElementById('musicPrompt');
   const music = document.getElementById('bgAudio');
+  let isPlaying = false;
 
-  document.addEventListener('click', () => {
-    if (music) {
-      music.volume = 0.9;
-      music.play().catch(err => console.warn('Музыка не запущена:', err));
+  document.addEventListener('click', async () => {
+    try {
+      if (!isPlaying) {
+        await music.play();
+        music.volume = 0.8;
+        isPlaying = true;
+        console.log('Музыка включена');
+      } else {
+        music.pause();
+        isPlaying = false;
+        console.log('Музыка выключена');
+      }
+    } catch (err) {
+      console.warn('Ошибка при воспроизведении музыки:', err);
     }
-    prompt.style.opacity = '0';
-    setTimeout(() => prompt.remove(), 1000);
-  }, { once: true });
-</script>
-
-
-      
-  <!-- 🎵 Кнопка включения музыки -->
-<div id="musicPrompt" 
-     style="position:fixed;inset:0;background:rgba(0,0,0,0.6);
-     color:white;display:flex;align-items:center;justify-content:center;
-     font-size:22px;font-family:'Playfair Display',serif;
-     z-index:2000;transition:opacity 1s ease;">
-  🔊 Нажмите, чтобы включить музыку
-</div>
-
-<script>
-  const prompt = document.getElementById('musicPrompt');
-  const music = document.getElementById('bgAudio'); // исправлено id
-
-  document.addEventListener('click', () => {
-    if (music) {
-      music.volume = 0.9;
-      music.play().catch(err => console.warn('Музыка не запущена:', err));
-    }
-    prompt.style.opacity = '0';
-    setTimeout(() => prompt.remove(), 1000);
-  }, { once: true });
+  });
 </script>
 
 
