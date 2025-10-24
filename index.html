@@ -299,7 +299,6 @@
   }, { once: true });
 </script>
 
-<!-- 🎵 Кнопка включения музыки -->
 <div id="musicPrompt" 
      style="position:fixed;inset:0;background:rgba(0,0,0,0.6);
      color:white;display:flex;align-items:center;justify-content:center;
@@ -309,28 +308,17 @@
 </div>
 
 <script>
-  const music = document.getElementById('music'); // твой <audio id="music">
-  const toggle = document.getElementById('musicPrompt');
-  let playing = false;
+  const prompt = document.getElementById('musicPrompt');
+  const music = document.getElementById('music'); // твой тег <audio id="music">
 
-  // При нажатии — включаем/выключаем музыку
-  toggle.addEventListener('click', () => {
-    if (!music) return;
-    if (!playing) {
-      music.volume = 0.6;
-      music.play().catch(err => console.warn('Ошибка воспроизведения:', err));
-      toggle.style.background = 'rgba(255,105,180,0.9)'; // розовый поярче
-      toggle.textContent = '⏸️';
-      playing = true;
-    } else {
-      music.pause();
-      toggle.style.background = 'rgba(255,192,203,0.9)';
-      toggle.textContent = '🎵';
-      playing = false;
+  document.addEventListener('click', () => {
+    if (music) {
+      music.volume = 0.5;
+      music.play().catch(err => console.warn('Музыка не запущена:', err));
     }
-    toggle.style.transform = 'scale(1.1)';
-    setTimeout(() => toggle.style.transform = 'scale(1)', 150);
-  });
+    prompt.style.opacity = '0';
+    setTimeout(() => prompt.remove(), 1000);
+  }, { once: true });
 </script>
 
 
