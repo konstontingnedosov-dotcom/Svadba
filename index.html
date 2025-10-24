@@ -294,39 +294,44 @@
 
 
 <!-- 🎵 Кнопка управления музыкой -->
-<div id="musicToggle"
-     style="position:fixed;bottom:25px;right:25px;width:60px;height:60px;
-     background:rgba(255,192,203,0.9);border-radius:50%;box-shadow:0 4px 12px rgba(0,0,0,0.2);
-     display:flex;align-items:center;justify-content:center;cursor:pointer;
-     font-size:28px;color:#fff;font-family:'Playfair Display',serif;
-     z-index:2000;transition:transform 0.3s ease, background 0.3s ease;">
-  🎵
+<div id="musicPrompt" 
+     style="position:fixed;inset:0;background:rgba(0,0,0,0.6);
+     color:white;display:flex;align-items:center;justify-content:center;
+     font-size:22px;font-family:'Playfair Display',serif;
+     z-index:2000;cursor:pointer;user-select:none;
+     transition:opacity 0.8s ease, background 0.5s ease;">
+  🔊 Нажмите, чтобы включить музыку
 </div>
 
 <script>
-  const music = document.getElementById('music'); // твой <audio id="music">
-  const toggle = document.getElementById('musicToggle');
-  let playing = false;
+  const prompt = document.getElementById('musicPrompt');
+  const music = document.getElementById('music'); // твой тег <audio id="music">
+  let isPlaying = false;
 
-  // При нажатии — включаем/выключаем музыку
-  toggle.addEventListener('click', () => {
+  prompt.addEventListener('click', () => {
     if (!music) return;
-    if (!playing) {
+
+    if (!isPlaying) {
+      // ▶️ Включаем музыку
       music.volume = 0.6;
-      music.play().catch(err => console.warn('Ошибка воспроизведения:', err));
-      toggle.style.background = 'rgba(255,105,180,0.9)'; // розовый поярче
-      toggle.textContent = '⏸️';
-      playing = true;
+      music.play().catch(err => console.warn('Музыка не запущена:', err));
+      prompt.textContent = '⏸️ Нажмите, чтобы выключить музыку';
+      prompt.style.background = 'rgba(255,182,193,0.6)';
+      isPlaying = true;
     } else {
+      // ⏹️ Выключаем музыку
       music.pause();
-      toggle.style.background = 'rgba(255,192,203,0.9)';
-      toggle.textContent = '🎵';
-      playing = false;
+      prompt.textContent = '🔊 Нажмите, чтобы включить музыку';
+      prompt.style.background = 'rgba(0,0,0,0.6)';
+      isPlaying = false;
     }
-    toggle.style.transform = 'scale(1.1)';
-    setTimeout(() => toggle.style.transform = 'scale(1)', 150);
+
+    // Лёгкая анимация клика
+    prompt.style.transform = 'scale(0.97)';
+    setTimeout(() => prompt.style.transform = 'scale(1)', 150);
   });
 </script>
+
 
 
 
