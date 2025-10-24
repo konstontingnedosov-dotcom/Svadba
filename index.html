@@ -263,14 +263,17 @@ button:hover{background:var(--gold);color:#000;}
 </audio>
 
 <script>
-// ==== Музыка ====
-const bg = document.getElementById('bgAudio');
-let playing=false;
-document.addEventListener('click',async()=>{
-  if(!playing){
-    try{await bg.play();playing=true;}catch{}
-  }
-});
+ /* Музыка */
+    const music = document.getElementById('bgAudio');
+    let playing = false;
+    document.addEventListener('click', async e => {
+      const tag = e.target.tagName.toLowerCase();
+      if (['input','select','textarea','button'].includes(tag)) return;
+      try {
+        if (!playing) { await music.play(); playing = true; } else { music.pause(); playing = false; }
+      } catch {}
+    });
+
 
 // ==== Верхняя панель (появление/исчезновение при скролле) ====
 let lastScroll=0;
@@ -349,3 +352,4 @@ form.addEventListener('submit',e=>{
 </script>
 </body>
 </html>
+
