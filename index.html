@@ -158,7 +158,7 @@
 <body>
   
 <div class="page">
-    <header class="site-header" style="text-align:center; padding:20px 0; font-family:'Playfair Display',serif;">
+  <header class="site-header" style="text-align:center; padding:20px 0; font-family:'Playfair Display',serif;">
   <div class="logo" style="font-size:28px; font-weight:bold; margin-bottom:10px;">
     Юсуф &amp; Лариза
   </div>
@@ -170,7 +170,7 @@
     <a href="#gallery" style="text-decoration:none;color:#333;font-size:18px;">Фото</a>
   </nav>
 
-  <!-- Нижние кнопки по центру -->
+  <!-- Нижние кнопки -->
   <div style="display:flex;justify-content:center;gap:20px;margin-top:10px;">
     <button id="toggleSound" 
             style="padding:8px 20px;font-size:16px;border:none;border-radius:10px;
@@ -185,6 +185,38 @@
     </a>
   </div>
 </header>
+
+<audio id="music" loop>
+  <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+  const music = document.getElementById('music');
+  const soundBtn = document.getElementById('toggleSound');
+  let isPlaying = false;
+
+  soundBtn.addEventListener('click', () => {
+    if (!music) return;
+
+    if (!isPlaying) {
+      // ▶️ Запуск музыки (тот самый рабочий способ)
+      music.volume = 0.6;
+      music.play().catch(err => console.warn('Музыка не запущена:', err));
+      soundBtn.textContent = 'Звук 🔊';
+      soundBtn.style.background = '#ffb6c1';
+      soundBtn.style.color = '#fff';
+      isPlaying = true;
+    } else {
+      // ⏹️ Остановка
+      music.pause();
+      music.currentTime = 0; // перематываем в начало
+      soundBtn.textContent = 'Звук 🔇';
+      soundBtn.style.background = '#f3f3f3';
+      soundBtn.style.color = '#333';
+      isPlaying = false;
+    }
+  });
+</script>
 
   
 
