@@ -160,13 +160,16 @@
 <div class="page">
     <header class="site-header">
       <div class="logo">Юсуф &amp; Лариза</div>
-      <nav class="nav">
-        <a href="#details">Детали</a>
-        <a href="#schedule">Программа</a>
-        <a href="#gallery">Фото</a>
-        <a href="#rsvp" class="primary">RSVP</a>
-      </nav>
+    <nav class="nav">
+  <a href="#details">Детали</a>
+  <a href="#schedule">Программа</a>
+  <a href="#gallery">Фото</a>
+  <a href="#" id="toggleSound">Звук 🔇</a>
+  <a href="#rsvp" class="primary">RSVP</a>
+</nav>
+
     </header>
+  
 
     <!-- === Большой таймер сверху === -->
     <div class="big-countdown">
@@ -293,44 +296,32 @@
 
 
 
-<!-- 🎵 Кнопка управления музыкой -->
-<div id="musicPrompt" 
-     style="position:fixed;inset:0;background:rgba(0,0,0,0.6);
-     color:white;display:flex;align-items:center;justify-content:center;
-     font-size:22px;font-family:'Playfair Display',serif;
-     z-index:2000;cursor:pointer;user-select:none;
-     transition:opacity 0.8s ease, background 0.5s ease;">
-  🔊 Нажмите, чтобы включить музыку
-</div>
-
 <script>
-  const prompt = document.getElementById('musicPrompt');
   const music = document.getElementById('music'); // твой тег <audio id="music">
+  const soundBtn = document.getElementById('toggleSound');
   let isPlaying = false;
 
-  prompt.addEventListener('click', () => {
+  soundBtn.addEventListener('click', (e) => {
+    e.preventDefault();
     if (!music) return;
 
     if (!isPlaying) {
       // ▶️ Включаем музыку
       music.volume = 0.6;
-      music.play().catch(err => console.warn('Музыка не запущена:', err));
-      prompt.textContent = '⏸️ Нажмите, чтобы выключить музыку';
-      prompt.style.background = 'rgba(255,182,193,0.6)';
+      music.play().catch(err => console.warn('Не удалось запустить музыку:', err));
+      soundBtn.textContent = 'Звук 🔊';
+      soundBtn.style.color = '#2b2b2b';
       isPlaying = true;
     } else {
       // ⏹️ Выключаем музыку
       music.pause();
-      prompt.textContent = '🔊 Нажмите, чтобы включить музыку';
-      prompt.style.background = 'rgba(0,0,0,0.6)';
+      soundBtn.textContent = 'Звук 🔇';
+      soundBtn.style.color = 'var(--muted)';
       isPlaying = false;
     }
-
-    // Лёгкая анимация клика
-    prompt.style.transform = 'scale(0.97)';
-    setTimeout(() => prompt.style.transform = 'scale(1)', 150);
   });
 </script>
+
 
 
 
