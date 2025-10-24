@@ -300,12 +300,13 @@
 </script>
 
 <!-- 🎵 Кнопка включения музыки -->
-<div id="musicPrompt" 
-     style="position:fixed;inset:0;background:rgba(0,0,0,0.6);
-     color:white;display:flex;align-items:center;justify-content:center;
-     font-size:22px;font-family:'Playfair Display',serif;
-     z-index:2000;transition:opacity 1s ease;">
-  🔊 Нажмите, чтобы включить музыку
+<div id="musicToggle"
+     style="position:fixed;bottom:25px;right:25px;width:60px;height:60px;
+     background:rgba(255,192,203,0.9);border-radius:50%;box-shadow:0 4px 12px rgba(0,0,0,0.2);
+     display:flex;align-items:center;justify-content:center;cursor:pointer;
+     font-size:28px;color:#fff;font-family:'Playfair Display',serif;
+     z-index:2000;transition:transform 0.3s ease, background 0.3s ease;">
+  🎵
 </div>
 
 <script>
